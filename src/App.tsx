@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { FaFire } from "react-icons/fa6";
-import { FiPlus } from "react-icons/fi";
+import { FiDownload, FiPlus } from "react-icons/fi";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 import { Button } from "./components/ui/button";
@@ -16,7 +16,6 @@ import {
 import HabitCard from "./components/other/HabitCard";
 import { HabitContext } from "./Contexts/HabitContext";
 import HabitFrom from "./HabitFrom";
-import { AlertDialog, AlertDialogTrigger } from "./components/ui/alert-dialog";
 
 function App() {
   const { habits, setHabits } = useContext(HabitContext);
@@ -34,12 +33,16 @@ function App() {
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
+  const handlePWAInstall = () => {};
   return (
     <>
-      <nav className=" max-w-screen-md mx-auto p-5">
+      <nav className="flex justify-between max-w-screen-md mx-auto p-5">
         <h1 className="text-xl font-bold flex items-center gap-2">
           <FaFire className="text-amber-400" /> <span>Habit-Heatmap</span>
         </h1>
+        <Button className="flex items-center gap-2" onClick={handlePWAInstall}>
+          <FiDownload /> Install
+        </Button>
       </nav>
       <main className=" relative space-y-4 max-w-screen-md mx-auto py-10 px-4">
         {habits?.map((item, index) => (

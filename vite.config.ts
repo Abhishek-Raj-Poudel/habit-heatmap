@@ -18,7 +18,12 @@ export default defineConfig({
       manifest: {
         name: "Habit Heatmap",
         short_name: "Habit-heatmap",
-        description: "A habit tracking app , nothing more then that",
+        id: "habit-heatmap",
+        start_url: "/?source=pwa",
+        background_color: "#ffffff",
+        display: "standalone",
+        description: "A habit tracking app, nothing more then that",
+        categories: ["productivity", "habit"],
         theme_color: "#fff",
         icons: [
           {
@@ -580,6 +585,14 @@ export default defineConfig({
             src: "pwa-images/ios/1024.png",
             sizes: "1024x1024",
             type: "image/png",
+          },
+        ],
+        screenshots: [
+          {
+            src: "/pwa-images/screenshots/screenshot1",
+            sizes: "400x822",
+            type: "image/png",
+            form_factor: "narrow",
           },
         ],
       },
