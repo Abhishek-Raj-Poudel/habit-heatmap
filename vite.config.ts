@@ -589,10 +589,16 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: "/pwa-images/screenshots/screenshot1.png",
-            sizes: "400x822",
+            src: "/pwa-images/screenshots/screenshot-mobile.png",
+            sizes: "400x800",
             type: "image/png",
             form_factor: "narrow",
+          },
+          {
+            src: "/pwa-images/screenshots/screenshot2.png",
+            sizes: "1279x821",
+            type: "image/png",
+            form_factor: "wide",
           },
         ],
       },
