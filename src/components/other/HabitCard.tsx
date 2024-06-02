@@ -47,6 +47,7 @@ function HabitCard({ data }: HabitCardProps) {
     data?.heatmaps?.map((heatmap) => new Date(heatmap.date))
   );
   const { habits, setHabits, deleteHabit } = useContext(HabitContext);
+  const [previousYear, setPreviousYear] = useState<Date>();
   // Because heatmap[] and the date type in our heatmap library doesn't match so we are doing this to cope with that
   // Note - I think we should memoise this
 
@@ -76,18 +77,6 @@ function HabitCard({ data }: HabitCardProps) {
     setHabits(habitsToSave);
     localStorage.setItem("habits", JSON.stringify(habitsToSave));
   }, [days]);
-
-  // const handleheatmapUpdate = () => {
-  //   const heatmaps: heatmap[] = (days ?? []).map((item) => {
-  //     const newdate = new Date(item);
-  //     const formattedDate = getFormattedDate(newdate);
-  //     return { date: formattedDate, count: 1 };
-  //   });
-
-  //   const habitsToSave = setHabitHeatmap(heatmaps);
-  //   setHabits(habitsToSave);
-  //   localStorage.setItem("habits", JSON.stringify(habitsToSave));
-  // };
 
   const footer =
     days && days.length > 0 ? (
@@ -119,6 +108,18 @@ function HabitCard({ data }: HabitCardProps) {
   //   console.log("data is changed", data);
   // }, [habits]);
 
+  useEffect(() => {
+    let createdDate = new Date(data?.created_date);
+    let month = createdDate.getMonth() + 2;
+    let day = createdDate.getDate();
+    let year = createdDate.getFullYear() - 1;
+
+    // console.log(`${year}/${month}/${day}`);
+    setPreviousYear(new Date(`${year}/${month}/${day}`));
+  }, []);
+
+  // getPreviousYear();
+
   return (
     <Card className="p-4">
       <CardHeader className="flex-row justify-between gap-4">
@@ -140,7 +141,9 @@ function HabitCard({ data }: HabitCardProps) {
           rectProps={{
             rx: 2.5,
           }}
-          startDate={new Date(data?.created_date)}
+          // startDate={new Date(data?.created_date)}
+          startDate={previousYear}
+          endDate={new Date()}
         />
       </CardContent>
       <CardFooter className="flex-row gap-3">
