@@ -121,7 +121,7 @@ function HabitCard({ data }: HabitCardProps) {
   // getPreviousYear();
 
   return (
-    <Card className="p-4">
+    <Card className="p-4 ">
       <CardHeader className="flex-row justify-between gap-4">
         <div className="">
           <CardTitle>{data?.title}</CardTitle>
@@ -129,9 +129,12 @@ function HabitCard({ data }: HabitCardProps) {
         </div>
         {/* <Checkbox className="h-8 w-8" onClick={handleCheck} /> */}
       </CardHeader>
-      <CardContent className="p-0">
+      <CardContent
+        className="p-0 overflow-x-scroll"
+        style={{ direction: "rtl" }}
+      >
         <HeatMap
-          className="w-full"
+          className="w-[200%] lg:w-full"
           value={data?.heatmaps}
           weekLabels={["", "mon", "", "wed", "", "fri", ""]}
           panelColors={{
